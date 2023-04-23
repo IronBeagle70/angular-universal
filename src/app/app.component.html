@@ -36,5 +36,67 @@
 
   <router-outlet></router-outlet>
 
+  <div class="spinner-container" *appShellDirective >
+    <mat-spinner></mat-spinner>
+  </div>
 
 </mat-sidenav-container>
+
+
+<!-- ANGULAR UNIVERSAL: permite renderizar en el servidor en lugar del client y para hacer pre render -->
+
+<!-- mejorar el performance de la app, para mostrar contenido inicial rapidamente -->
+<!-- search engine optimizacion -->
+<!-- puede renderizar en el servidor cuando se hacer la peticion para mostrar contenido al inicio de la app web -->
+<!-- cuando responda por primera vez habra contenido que podra ser mostrado -->
+
+<!-- server side rendering genera el contenido de la app web en el servidor cuando el cliente lo solicite, mientras que en pre render este contenido ya esta generado -->
+<!-- server side rendering, cada vez que el cliente solicita una página, el servidor genera el contenido HTML correspondiente en ese momento, utilizando la información disponible en ese momento. -->
+<!-- En el pre render, en cambio, el contenido ya se ha generado previamente y se entrega directamente al cliente, sin necesidad de que el servidor tenga que generarlo en ese momento -->
+<!-- pre render para rutas  -->
+<!-- poco a poco menos para SEO search engine soporta SPA -->
+<!-- social media : paginas en post creados automaticamente por el metadata, webs publicas, si necesitan auth tal ves no se muestren -->
+<!-- ANGULAR UNIVERSAL: Sever side rendering y pre render para -optimizar la experiencia- y uso en mobile devices y slow networks -->
+
+<!-- ng add @ngularuniversal/express-engine -->
+<!-- npm run dev:ssr -->
+
+<!-- app.module.ts: client side -->
+<!-- app.server.module.ts: server side, genera el contenido de tmp.html -->
+
+<!-- primero produce tmp.html, es enviado al cliente, se ve sin carga en el browser como una pagina estatica, luego sera añadido al contenido restante, elimina los archivos que se repiten como los archivos css, luego la pagina sera igual a una single page app -->
+<!-- server side se usa para hacer el html payload en la request inicial de la pagina -->
+<!-- server side solo produce el html y css que sera mostrado por primera vez al usuario, luego todo funcionada como spa -->
+
+<!-- npm run build:ssr genera los archivos en una carpeta dist -->
+<!-- npm run serve:ssr se abre un nuevo puerto como npm start -->
+
+<!-- npm run dev:ssr como nodemon, detecta cambios y los guarda en el client y server side-->
+
+<!-- servidor express de ANGULAR UNIVERSAL -->
+<!-- usa la funcion renderModuleFactory -->
+<!-- en el archivo server.ts -->
+
+<!-- npm run prerender: se crea en dist htmls que seran servidos cuando se haga la primera peticion -->
+<!-- pre render crea archivos estaticos de rutas estaticas -->
+<!-- "prerender": "ng run angular-universal-course:prerender  --routes /courses/01 --routes /courses/02 " para hacer prerender de rutas dinamicas o tambien en un txt agregar las rutas-->
+<!-- "prerender": "ng run angular-universal-course:prerender  --routesFile routes.txt" -->
+<!-- en el txt: /courses/01 /courses/02 ... -->
+
+<!-- SEO: search engine optimization -->
+<!-- posicionamiento con metadata <meta name="description" content="Use Angular on the server! Learn Angular Server" > -->
+<!-- pero es recomendable usar metadata para cada pagina de la app web como en home.component.ts con title -->
+<!-- en pre render el title sera agregado despues pero en ssr no, lo que hace mas eficiente en otros buscadores -->
+<!-- course.component.ts para ver como agregar estos metadatas y buscadores de social medias -->
+
+<!-- Aplication Shell: implica renderizar en el servidor solo la estructura básica de la aplicación y enviarla al navegador de forma inmediata, para mejorar el rendimiento y la experiencia del usuario. -->
+<!-- se puede hacer con directivas como *appShellDirective y *appShellNoDirective -->
+<!-- *appShellDirective: se utiliza para mostrar un spinner de carga mientras se carga la aplicación Angular Universal en el servidor. -->
+<!-- *appShellNoDirective:  para indicar que el contenido no debe ser renderizado en el servidor, se renderizará solo en el lado del cliente después de que se cargue la página, -->
+<!-- De esta manera, se evita que se genere contenido en el servidor que podría ser redundante o innecesario, lo que ayuda a mejorar el rendimiento y la velocidad de carga de la aplicación -->
+
+<!-- state transfer entre el servidor y cliente en course.resolver.ts -->
+
+<!-- Deploy Angular Universal app -->
+<!-- usar pre render mas que server side rendering por generar static files que luego de actualizaran a contenido estatico http server -->
+

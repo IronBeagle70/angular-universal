@@ -29,6 +29,8 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from '@angular/common/http';
 import {AboutComponent} from './about/about.component';
+import { AppShellRenderDirective } from './directives/app-shell-render.directive';
+import { AppShellNoRenderDirective } from './directives/app-shell-norender.directive';
 
 
 
@@ -41,10 +43,14 @@ import {AboutComponent} from './about/about.component';
     CourseComponent,
     CoursesCardListComponent,
     CourseDialogComponent,
-    AboutComponent
+    AboutComponent,
+    AppShellRenderDirective,
+    AppShellNoRenderDirective
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }), //para server side
+    // BrowserModule, //sin server side
+    // BrowserTransferStateModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,

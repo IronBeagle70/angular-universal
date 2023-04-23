@@ -28,7 +28,10 @@ export class CourseComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private coursesService: CoursesService) {
+        private coursesService: CoursesService,
+        private title: Title, //titulo de la web
+        private meta: Meta // metada
+        ) {
 
     }
 
@@ -37,6 +40,17 @@ export class CourseComponent implements OnInit {
     ngOnInit() {
 
         this.course = this.route.snapshot.data["course"];
+
+        this.title.setTitle(this.course.description); //titulo
+
+        this.meta.updateTag({name: "description", content: this.course.longDescription}) //descripcion
+
+        this.meta.addTag({name: 'twitter:card', content: 'summary'});
+        this.meta.addTag({name: 'twitter:site', content: '@AngularUniv'});
+        this.meta.addTag({name: 'twitter:title', content: this.course.description});
+        this.meta.addTag({name: 'twitter:description', content: this.course.description});
+        this.meta.addTag({name: 'twitter:text:description', content: this.course.description});
+        this.meta.addTag({name: 'twitter:image', content: 'url de una imagen'});
 
         this.dataSource = new MatTableDataSource([]);
 
